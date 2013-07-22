@@ -17,8 +17,7 @@ public class WordCleanner {
             //to lower case, trim, replace non alpha characters
             return word.toLowerCase()
                        .trim()
-                       //.replaceAll("[^A-Za-z]","");
-                       .replaceAll(">|<|/|:|;|%|&|\\+|-|'|\"|\\t|!|\\.|,|#|\\$|=|\\{|\\}|\\(|\\)|\\*|\\d","");
+                       .replaceAll("\\s|[^A-Za-z]","");
         }
 
         //if still here, return nothing, null
