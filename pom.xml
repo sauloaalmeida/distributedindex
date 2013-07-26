@@ -7,7 +7,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>br.ufrj.nce.recureco</groupId>
     <artifactId>distributedindex</artifactId>
-    <version>1.0.0.41-SNAPSHOT</version>
+    <version>1.0.0.49-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Distributed Index</name>
@@ -90,7 +90,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>br.ufrj.nce.recureco.distributedindex.Tokenizer</mainClass>
+                            <mainClass>br.ufrj.nce.recureco.distributedindex.indexer.IndexerMain</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -105,13 +105,13 @@
                         <id>upload-jar</id>
                         <phase>install</phase>
                         <goals>
-                            <goal>upload</goal>
+                            <goal>upload-single</goal>
                         </goals>
                         <configuration>
                             <serverId>hadoop01</serverId>
-                            <fromDir>${project.build.directory}/${project.build.finalName}.jar</fromDir>
-                            <url>scp://192.168.56.102/</url>
-                            <toDir>/hadoop/usr/hadoop-1.1.2/</toDir>
+                            <fromFile>${project.build.directory}/${build.finalName}.jar</fromFile>
+                            <url>scp://192.168.56.121/</url>
+                            <toFile>/hadoop/usr/hadoop-1.1.2/${build.finalName}.jar</toFile>
                         </configuration>
                     </execution>
                 </executions>
