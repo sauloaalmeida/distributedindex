@@ -1,4 +1,4 @@
-package br.ufrj.nce.recureco.distributedindex.common.stopword;
+package br.ufrj.nce.recureco.distributedindex.common.clean.stopword;
 
 import java.util.Arrays;
 import java.util.List;

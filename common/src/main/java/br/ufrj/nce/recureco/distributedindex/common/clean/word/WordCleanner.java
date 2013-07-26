@@ -1,4 +1,4 @@
-package br.ufrj.nce.recureco.distributedindex.common.wordcleaner;
+package br.ufrj.nce.recureco.distributedindex.common.clean.word;
 
 /**
  * Created with IntelliJ IDEA.
