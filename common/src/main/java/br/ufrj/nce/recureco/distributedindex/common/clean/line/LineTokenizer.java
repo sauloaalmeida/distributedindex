@@ -1,6 +1,7 @@
 package br.ufrj.nce.recureco.distributedindex.common.clean.line;
 
 import br.ufrj.nce.recureco.distributedindex.common.clean.stopword.StopWordVerifier;
+import br.ufrj.nce.recureco.distributedindex.common.clean.word.PorterStemmer;
 import br.ufrj.nce.recureco.distributedindex.common.clean.word.WordCleanner;
 
 import java.util.ArrayList;
@@ -18,10 +19,12 @@ public class LineTokenizer {
 
     private StopWordVerifier stopWordVerifier;
     private WordCleanner wordCleanner;
+    private PorterStemmer porterStemmer;
 
     public LineTokenizer() {
         this.stopWordVerifier = new StopWordVerifier();
         this.wordCleanner = new WordCleanner();
+        this.porterStemmer = new PorterStemmer();
     }
 
     public List<String> tokenize(String line){
@@ -37,9 +40,12 @@ public class LineTokenizer {
             //convert to lower case, trim and remove all non alpha characters
             auxWord = wordCleanner.cleanWord(auxWord);
 
-            //TODO:stemming
+            //stemming
+            porterStemmer.add(auxWord.toCharArray(),auxWord.length());
+            porterStemmer.stem();
+            auxWord = porterStemmer.toString();
 
-            //TODO:lemmitization
+            //TODO lemmatization for future works
 
             //removing stop words
             if(auxWord != null && auxWord.trim().length() > 0 && !stopWordVerifier.isStopWord(auxWord)){
