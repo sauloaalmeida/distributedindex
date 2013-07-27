@@ -15,11 +15,17 @@
   <url>http://maven.apache.org</url>
   
   <dependencies>
-    <dependency>
-        <groupId>br.ufrj.nce.recureco.distributedindex</groupId>
-        <artifactId>common</artifactId>
-        <version>1.0-SNAPSHOT</version>
-       </dependency>
+      <dependency>
+          <groupId>br.urfj.nce.recureco.distributedindex</groupId>
+          <artifactId>common</artifactId>
+          <version>1.0-SNAPSHOT</version>
+          <scope>compile</scope>
+      </dependency>
+      <dependency>
+          <groupId>commons-collections</groupId>
+          <artifactId>commons-collections</artifactId>
+          <version>3.2.1</version>
+      </dependency>
       <dependency>
           <groupId>javax.servlet</groupId>
           <artifactId>servlet-api</artifactId>
@@ -36,11 +42,33 @@
           <groupId>javax.servlet</groupId>
           <artifactId>jstl</artifactId>
           <version>1.2</version>
-          <scope>provided</scope>
+          <scope>runtime</scope>
+      </dependency>
+      <dependency>
+          <groupId>mysql</groupId>
+          <artifactId>mysql-connector-java</artifactId>
+          <version>5.1.25</version>
+      </dependency>
+      <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+          <version>4.7</version>
+          <scope>test</scope>
       </dependency>
   </dependencies>
 
   <build>
     <finalName>search</finalName>
+      <plugins>
+          <plugin>
+              <groupId>org.apache.tomcat.maven</groupId>
+              <artifactId>tomcat6-maven-plugin</artifactId>
+              <version>2.0</version>
+              <configuration>
+                  <path>/search</path>
+                  <port>8081</port>
+              </configuration>
+          </plugin>
+      </plugins>
   </build>
 </project>
