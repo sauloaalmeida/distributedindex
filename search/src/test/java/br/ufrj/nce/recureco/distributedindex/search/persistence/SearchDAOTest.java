@@ -16,7 +16,7 @@ import java.util.List;
 public class SearchDAOTest {
 
     @Test
-    public void searchDAOTest(){
+    public void searchDAOSuccessTest(){
         SearchDAO searchDAO = new SearchDAO("jdbc:mysql://192.168.56.121:3306/distributedindextest?user=root&password=123456");
 
         List<String> wordAndList = new ArrayList<String>();
@@ -26,6 +26,30 @@ public class SearchDAOTest {
         List<String> listResult = searchDAO.getDocuments(wordAndList);
 
         Assert.assertEquals(2,listResult.size());
+    }
+
+    @Test
+    public void searchDAOEmptySuccessTest(){
+        SearchDAO searchDAO = new SearchDAO("jdbc:mysql://192.168.56.121:3306/distributedindextest?user=root&password=123456");
+
+        List<String> wordAndList = new ArrayList<String>();
+
+
+        List<String> listResult = searchDAO.getDocuments(wordAndList);
+
+        Assert.assertEquals(0,listResult.size());
+    }
+
+
+    @Test
+    public void searchDAONullSuccessTest(){
+        SearchDAO searchDAO = new SearchDAO("jdbc:mysql://192.168.56.121:3306/distributedindextest?user=root&password=123456");
+
+        List<String> wordAndList = null;
+
+        List<String> listResult = searchDAO.getDocuments(wordAndList);
+
+        Assert.assertEquals(0,listResult.size());
     }
 
 }

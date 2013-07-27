@@ -2,7 +2,6 @@ package br.ufrj.nce.recureco.distributedindex.search.persistence;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,6 +29,16 @@ public class SearchDAO {
 
     public List<String> getDocuments(List<String> andWords){
 
+        //if query words list is null, return empty results
+        if(andWords==null){
+            return new ArrayList<String>();
+        }
+        //if query words list is  empty, return empty results
+        if (andWords.size() == 0){
+            return new ArrayList<String>();
+        }
+
+        //if still here, there is something to search
         Connection conn = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;

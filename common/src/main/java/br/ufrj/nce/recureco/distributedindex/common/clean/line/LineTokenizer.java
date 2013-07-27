@@ -29,6 +29,10 @@ public class LineTokenizer {
 
     public List<String> tokenize(String line){
 
+        if(line == null){
+            return new ArrayList<String>();
+        }
+
         StringTokenizer tokenizer = new StringTokenizer(line);
 
         List<String> wordList = new ArrayList<String>();

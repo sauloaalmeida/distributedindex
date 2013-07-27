@@ -6,10 +6,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.ListUtils;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -24,13 +21,29 @@ public class SearchService {
     private SearchDAO searchDAO;
 
     public SearchService() {
-        this.lineTokenizer = new LineTokenizer();
-        this.searchDAO = new SearchDAO();
+        this(new LineTokenizer(),new SearchDAO());
+    }
+
+    SearchService(LineTokenizer lineTokenizer, SearchDAO searchDAO) {
+        this.lineTokenizer = lineTokenizer;
+        this.searchDAO = searchDAO;
     }
 
     public List<String> getDocuments(String query){
 
-        List<String> results = searchDAO.getDocuments(lineTokenizer.tokenize(query));
+        List<String> andWords = lineTokenizer.tokenize(query);
+
+        //if query words list is null, return empty results
+        if(andWords==null){
+            return new ArrayList<String>();
+        }
+        //if query words list is  empty, return empty results
+        if (andWords.size() == 0){
+            return new ArrayList<String>();
+        }
+
+        //if still here, there is something to search
+        List<String> results = searchDAO.getDocuments(andWords);
 
         List<String> documentsIntersection = new ArrayList<String>();
 

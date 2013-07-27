@@ -1,14 +1,10 @@
 package br.ufrj.nce.recureco.distributedindex.search.controller;
 
-import br.ufrj.nce.recureco.distributedindex.search.service.SearchService;
-
-import javax.servlet.ServletContext;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.

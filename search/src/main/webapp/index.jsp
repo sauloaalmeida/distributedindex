@@ -10,8 +10,9 @@
 <body>
 
 <div id="form_search_with_results">
+    <h1>Distributed Index Search</h1>
     <form action="/search/search" method="get">
-        <label for="q">Search:</label><input type="text" id="q" name="q" value="<c:out value="${query}"/>"/>
+        <label for="q">Search:</label><input type="text" id="q" size="50" name="q" value="<c:out value="${query}"/>"/>
         <input type="submit" value="search">
     </form>
 </div>

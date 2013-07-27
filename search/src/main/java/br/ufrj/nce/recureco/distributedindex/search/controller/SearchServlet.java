@@ -3,7 +3,6 @@ package br.ufrj.nce.recureco.distributedindex.search.controller;
 import br.ufrj.nce.recureco.distributedindex.search.service.SearchService;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 

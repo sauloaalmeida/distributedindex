@@ -1,6 +1,5 @@
 package br.ufrj.nce.recureco.distributedindex.common.clean.stopword;
 
-import br.ufrj.nce.recureco.distributedindex.common.clean.stopword.StopWordVerifier;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
