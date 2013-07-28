@@ -70,6 +70,15 @@
               <groupId>org.apache.tomcat.maven</groupId>
               <artifactId>tomcat6-maven-plugin</artifactId>
               <version>2.1</version>
+              <executions>
+                  <execution>
+                      <id>redeploy</id>
+                      <phase>install</phase>
+                      <goals>
+                          <goal>redeploy</goal>
+                      </goals>
+                  </execution>
+              </executions>
               <configuration>
                   <url>http://192.168.56.121:8080/manager</url>
                   <server>tomcat-hadoop01</server>
