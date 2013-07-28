@@ -18,7 +18,7 @@
       <dependency>
           <groupId>br.urfj.nce.recureco.distributedindex</groupId>
           <artifactId>common</artifactId>
-          <version>1.0-SNAPSHOT</version>
+          <version>1.0</version>
           <scope>compile</scope>
       </dependency>
       <dependency>
@@ -69,10 +69,10 @@
           <plugin>
               <groupId>org.apache.tomcat.maven</groupId>
               <artifactId>tomcat6-maven-plugin</artifactId>
-              <version>2.0</version>
+              <version>2.1</version>
               <configuration>
-                  <path>/search</path>
-                  <port>8081</port>
+                  <url>http://192.168.56.121:8080/manager</url>
+                  <server>tomcat-hadoop01</server>
               </configuration>
           </plugin>
       </plugins>

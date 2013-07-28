@@ -212,7 +212,7 @@ public class SearchServiceTest {
     }
 
     @Test
-    public void testDocumentsNullWordsSuccessTest() throws Exception {
+    public void documentsNullWordsSuccessTest() throws Exception {
 
         List<String> finalResult = searchService.getDocuments(null);
 
@@ -222,7 +222,7 @@ public class SearchServiceTest {
 
 
     @Test
-    public void testDocumentsOnlyStopWordsSuccessTest() throws Exception {
+    public void documentsOnlyStopWordsSuccessTest() throws Exception {
 
         List<String> finalResult = searchService.getDocuments("and an on");
 

@@ -28,7 +28,7 @@
         <span class="totalresult">Your search returned <c:out value="${fn:length(result)}"/> result(s)!</span>
 
         <c:forEach items="${result}" var="document">
-            <p><a href="/search/download?doc=<c:out value="${document}"/>" target="_blank"><c:out value="${document}"/></a></p>
+            <p><a href="/search/documentViewer?doc=<c:out value="${document}"/>" target="_blank"><c:out value="${document}"/></a></p>
         </c:forEach>
 
         <p class="time">Query executed in <c:out value="${time}"/> millisecond(s)</p>

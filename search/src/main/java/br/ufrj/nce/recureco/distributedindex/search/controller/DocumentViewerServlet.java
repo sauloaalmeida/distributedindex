@@ -13,10 +13,10 @@ import java.io.OutputStream;
  * Time: 10:14 PM
  * To change this template use File | Settings | File Templates.
  */
-public class DownloadServlet extends javax.servlet.http.HttpServlet {
+public class DocumentViewerServlet extends javax.servlet.http.HttpServlet {
 
     private static final int BYTES_DOWNLOAD = 1024;
-    private static final String DIR_DOWNLOAD = "/Users/sauloandrade/IdeaProjects/files/";
+    private static final String DIR_DOWNLOAD = "/hadoop/usr/hadoop-1.1.2/input4/";
 
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
 
@@ -31,7 +31,6 @@ public class DownloadServlet extends javax.servlet.http.HttpServlet {
                 InputStream is = new FileInputStream(filePath);
 
                 response.setContentType("text/plain");
-                response.setHeader("Content-Disposition", String.format("attachment;filename=%s", doc));
 
                 int read=0;
                 byte[] bytes = new byte[BYTES_DOWNLOAD];
