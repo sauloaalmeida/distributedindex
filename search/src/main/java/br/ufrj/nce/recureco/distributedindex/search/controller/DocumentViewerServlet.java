@@ -1,5 +1,10 @@
 package br.ufrj.nce.recureco.distributedindex.search.controller;
 
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FSDataInputStream;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,7 +21,8 @@ import java.io.OutputStream;
 public class DocumentViewerServlet extends javax.servlet.http.HttpServlet {
 
     private static final int BYTES_DOWNLOAD = 1024;
-    private static final String DIR_DOWNLOAD = "/hadoop/usr/hadoop-1.1.2/input4/";
+    private static final String DIR_DOWNLOAD = "/input/";
+    private static final String DIR_HADOOP_CONF = "/hadoop/usr/hadoop-1.1.2/conf/";
 
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
 
@@ -28,7 +34,21 @@ public class DocumentViewerServlet extends javax.servlet.http.HttpServlet {
 
                 String filePath = DIR_DOWNLOAD + doc;
 
-                InputStream is = new FileInputStream(filePath);
+                Configuration conf = new Configuration();
+
+                conf.addResource(new Path(DIR_HADOOP_CONF + "core-site.xml"));
+                conf.addResource(new Path(DIR_HADOOP_CONF + "hdfs-site.xml"));
+                conf.addResource(new Path(DIR_HADOOP_CONF + "mapred-site.xml"));
+
+                FileSystem fileSystem = FileSystem.get(conf);
+
+                Path path = new Path(filePath);
+                if (!fileSystem.exists(path)) {
+                    response.getWriter().print("File not found.");
+                    return;
+                }
+
+                FSDataInputStream in = fileSystem.open(path);
 
                 response.setContentType("text/plain");
 
@@ -36,7 +56,7 @@ public class DocumentViewerServlet extends javax.servlet.http.HttpServlet {
                 byte[] bytes = new byte[BYTES_DOWNLOAD];
                 OutputStream os = response.getOutputStream();
 
-                while((read = is.read(bytes))!= -1){
+                while((read = in.read(bytes))!= -1){
                     os.write(bytes, 0, read);
                 }
                 os.flush();

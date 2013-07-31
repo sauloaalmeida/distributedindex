@@ -27,10 +27,11 @@
 
         <span class="totalresult">Your search returned <c:out value="${fn:length(result)}"/> result(s)!</span>
 
+        <p>
         <c:forEach items="${result}" var="document">
-            <p><a href="/search/documentViewer?doc=<c:out value="${document}"/>" target="_blank"><c:out value="${document}"/></a></p>
+            <a href="/search/documentViewer?doc=<c:out value="${document}"/>" target="_blank"><c:out value="${document}"/></a> &nbsp; &nbsp;
         </c:forEach>
-
+        </p>
         <p class="time">Query executed in <c:out value="${time}"/> millisecond(s)</p>
     </div>
 </c:if>
