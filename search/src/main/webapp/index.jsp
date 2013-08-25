@@ -13,6 +13,7 @@
     <h1>Distributed Index Search</h1>
     <form action="/search/search" method="get">
         <label for="q">Search:</label><input type="text" id="q" size="50" name="q" value="<c:out value="${query}"/>"/>
+        <label for="booleanOr">OR query:</label><input type="checkbox" id="booleanOr" name="booleanOr" value="true" <c:if test="${booleanOr != null}">checked="true"</c:if> />
         <input type="submit" value="search">
     </form>
 </div>

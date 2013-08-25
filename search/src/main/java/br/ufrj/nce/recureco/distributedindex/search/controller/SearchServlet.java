@@ -20,16 +20,22 @@ public class SearchServlet extends javax.servlet.http.HttpServlet {
         Date begin = new Date();
 
         String query = request.getParameter("q");
+        boolean booleanOr = (request.getParameter("booleanOr")!=null)?true:false;
 
         if(query != null && query.trim().length() > 0){
 
             //it there is message execute search, and get list result
-            List<String> documents = new SearchService().getDocuments(query);
+            List<String> documents = new SearchService().getDocuments(query,booleanOr);
 
             //set list results to be used in result page
             request.setAttribute("result",documents);
 
             request.setAttribute("query",query);
+
+            if(booleanOr){
+                request.setAttribute("booleanOr","true");
+            }
+
         }else{
 
             //if query is not set, set error message to be used in result page

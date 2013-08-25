@@ -29,7 +29,7 @@ public class SearchService {
         this.searchDAO = searchDAO;
     }
 
-    public List<String> getDocuments(String query){
+    public List<String> getDocuments(String query,boolean booleanOr){
 
         List<String> andWords = lineTokenizer.tokenize(query);
 
@@ -45,7 +45,7 @@ public class SearchService {
         //if still here, there is something to search
         List<String> results = searchDAO.getDocuments(andWords);
 
-        List<String> documentsIntersection = new ArrayList<String>();
+        List<String> documentsResults = new ArrayList<String>();
 
         boolean firstTime = true;
 
@@ -54,15 +54,19 @@ public class SearchService {
             List<String> auxList = new ArrayList<String>();
             CollectionUtils.addAll(auxList,docs.split(","));
 
-            if(firstTime){
-                documentsIntersection = ListUtils.union(documentsIntersection,auxList);
-                firstTime = false;
-            } else {
-                documentsIntersection = ListUtils.intersection(documentsIntersection,auxList);
+            if(booleanOr){
+                documentsResults = ListUtils.sum(documentsResults,auxList);
+            }else{
+                if(firstTime){
+                    documentsResults = ListUtils.union(documentsResults,auxList);
+                    firstTime = false;
+                } else {
+                    documentsResults = ListUtils.intersection(documentsResults,auxList);
+                }
             }
         }
 
-        return documentsIntersection;
+        return documentsResults;
     }
 
 }
