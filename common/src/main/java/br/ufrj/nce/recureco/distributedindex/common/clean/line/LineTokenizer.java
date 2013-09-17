@@ -44,15 +44,20 @@ public class LineTokenizer {
             //convert to lower case, trim and remove all non alpha characters
             auxWord = wordCleanner.cleanWord(auxWord);
 
-            //stemming
+            //if it is a stopword, go to next word
+            if(stopWordVerifier.isStopWord(auxWord)){
+                continue;
+            }
+
+            //if still here, stemming
             porterStemmer.add(auxWord.toCharArray(),auxWord.length());
             porterStemmer.stem();
             auxWord = porterStemmer.toString();
 
             //TODO lemmatization for future works
 
-            //removing stop words
-            if(auxWord != null && auxWord.trim().length() > 0 && !stopWordVerifier.isStopWord(auxWord)){
+            //if exists something ad to returnable list
+            if(auxWord != null && auxWord.trim().length() > 0){
                 wordList.add(auxWord);
             }
 
